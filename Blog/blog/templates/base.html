@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人博客</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <div class="navv">
+        <div class="nav_logo">
+            <a class="navbar-brand" href="{{ url_for('index.index') }}">
+                <img class="logo" src="{{ url_for('static',filename='images/logo.png') }}" alt="" width="80" height="40">
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="nav1">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="nav"><a href="{{ url_for('index.index') }}">首页</a></li>
+                    <li class="nav"><a href="#">博客</a></li>
+                    <li class="nav"><a href="{{ url_for('index.bbs') }}">论坛</a></li>
+                    <li class="nav"><a href="{{ url_for('index.write_blog') }}">写博客</a></li>
+                </ul>
+            </div>
+            <div class="nav1">
+                <form class="navbar-form navbar-left" action="{{ w }}" method="get">
+                    <div class="form-group">
+                        <input name="search" type="text" class="form-control" placeholder="请输入关键字">
+                    </div>
+                    <button type="submit" class="btn btn-default">查找</button>
+                </form>
+            </div>
+            <div class="nav2">
+                <ul class="nav nav-pills nav-stacked">
+                    {% if current_user.is_authenticated  %}
+                        <li class="nav"><a href="{{ url_for('index.personal_center') }}">{{ current_user.username }}</a> </li>
+                        <li class="nav"><a href="{{ url_for('index.logout') }}">注销</a> </li>
+                    {% else %}
+                        <li class="nav"><a href="{{ url_for('index.login') }}">登录</a> </li>
+                        <li class="nav"><a href="{{ url_for('index.regist') }}">注册</a> </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        {% block main %}{% endblock %}
+    </div>
+</body>
+</html>

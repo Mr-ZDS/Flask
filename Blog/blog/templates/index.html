@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bbs.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/personal_center.css') }}">
+{% endblock %}
+
+{% block main %}
+
+    <ul class="question-list-group">
+        {% for question in questions %}
+            <li class="lis">
+                <div class="avatar-group">
+                    <img src="{{ url_for('static',filename='images/tie.png') }}"
+                         alt="" class="avatar">
+                </div>
+                <div class="question-group">
+                    <p class="question-title"><a href="{{ url_for('index.detail',question_id=question.id) }}">{{ question.title }}</a></p>
+                    <p class="question-content"><a href="{{ url_for('index.detail',question_id=question.id) }}">{{ question.content }}</a></p>
+                    <div class="question-info">
+                        <span class="question-author">{{ question.blogger.username }}</span>
+                        <span class="question-time">{{ question.ques_time }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <ul class="upload-list-group">
+        {% for context in blog %}
+            <li class="lis">
+                <div class="avatar-group">
+                    <img src="{{ url_for('static',filename='images/blog.png') }}" alt="" class="avatar">
+                </div>
+                <div class="upload_group">
+                    <p class="book-title">
+                        <a href="#">{{ context.blog_title }}</a>
+                    </p>
+                    <p class="book-content">{{ context.blog_content }}</p>
+                    <div class="upload_info">
+                        <span class="uploader">{{ context.blogger.username }}</span>
+                        <span class="upload_time">{{ context.create_time }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

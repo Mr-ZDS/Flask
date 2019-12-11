@@ -1,0 +1,23 @@
+.nav1{
+    float: left;
+}
+
+
+.nav2{
+    padding-right: 40px;
+    text-align: right;
+    float: right;
+}
+
+body{
+    padding-top: 7px;
+    padding-left: 70px;
+}
+
+.main{
+    width: 730px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 10px;
+}
+

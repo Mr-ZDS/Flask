@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detail.css') }}">
+{% endblock %}
+
+
+
+{% block main %}
+    <h3 class="page-title">{{ question.title }}</h3>
+    <p class="question-info">
+        <span>帖主:{{ question.blogger.username }}</span>
+        <span>时间:{{ question.ques_time }}</span>
+    </p>
+    <hr>
+    <p class="question-content">{{ question.content }}</p>
+    <hr>
+    <div class="page">
+        <h4>回帖数：({{ count }})</h4>
+        <form action="{{ url_for('index.replies') }}" method="POST">
+            <div class="form-group">
+                <input name="answer_content" type="text" class="form-control" placeholder="请填写您的回复">
+                <input type="hidden" name="question_id" value="{{ question.id }}">
+            </div>
+            <div class="form-group" style="text-align: right;">
+                <button class="btn btn-primary">立即回复</button>
+            </div>
+        </form>
+    </div>
+
+    <ul class="answer-list">
+        {% for answer in question.answers %}
+            <li>
+                <div class="user-info">
+                    <img src="{{ url_for('static',filename='images/user.png') }}"
+                         alt="" class="avatar">
+                    <span class="username">{{ answer.answer_name.username }}</span>
+                    <span class="create-time">{{ answer.answer_time }}</span>
+                </div>
+                <p class="answer-content">{{ answer.content }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock%}

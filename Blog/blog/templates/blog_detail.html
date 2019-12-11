@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detail.css') }}">
+{% endblock %}
+
+
+
+{% block main %}
+    <h3 class="page-title">{{ blogs.title }}</h3>
+    <p class="question-info">
+        <span>博主:{{ blogs.blogger.username }}</span>
+        <span>时间:{{ blogs.create_time }}</span>
+    </p>
+    <hr>
+    <p class="question-content">{{ blogs.blog_content }}</p>
+    <hr>
+{% endblock%}

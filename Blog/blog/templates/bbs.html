@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bbs.css') }}">
+{% endblock %}
+
+
+{% block main %}
+    <div class="blog">
+        <ul class="ul_blog">
+            <li class="nav"><a href="{{ url_for('index.release') }}">我要发帖</a></li>
+        </ul>
+    </div>
+
+    <ul class="question-list-group">
+        {% for question in questions %}
+            <li class="lis">
+                <div class="avatar-group">
+                    <img src="{{ url_for('static',filename='images/user.png') }}"
+                         alt="" class="avatar">
+                </div>
+                <div class="question-group">
+                    <p class="question-title"><a href="{{ url_for('index.detail',question_id=question.id) }}">{{ question.title }}</a></p>
+                    <p class="question-content">{{ question.content }}</p>
+                    <div class="question-info">
+                        <span class="question-author">{{ question.blogger.username }}</span>
+                        <span class="question-time">{{ question.ques_time }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
