@@ -1,0 +1,48 @@
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+}
+
+.lis{
+    padding-top: 10px;
+}
+
+.avatar-group {
+    width: 40px;
+    height: 100%;
+    float: left;
+}
+
+.avatar-group .avatar {
+    width: 40px;
+    height: 40px;
+}
+
+.upload_group {
+    float: left;
+    width: 600px;
+    margin-left: 15px;
+}
+
+.book-title a {
+    color: #259;
+    font-weight: 900;
+}
+
+.upload_info {
+    text-align: right;
+}
+
+.upload_info .uploader {
+    margin-right: 20px;
+}
+
+.personal{
+    text-align: center;
+    padding: 15px;
+}

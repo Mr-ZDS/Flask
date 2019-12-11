@@ -1,0 +1,25 @@
+.logo {
+    width: 80px;
+}
+
+body {
+    background: #f3f3f3;
+}
+
+.main {
+    background: #fff;
+    width: 730px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 10px;
+
+}
+
+
+.col:hover {
+    background: #fdffb1;
+}
+
+.btn-default:hover{
+    background: #fdffb1;
+}

@@ -1,0 +1,29 @@
+这是个人写的共享图书馆，功能有些不完善，记录一下过程
+
+主要提供的功能：登录、注册、上传书籍(限定上传的格式)、下载、发布问答、评论等。
+
+注册：用户手机号码注册，判断是否已经注册，获取的密码hash加密保存在数据库中
+登录：判断是否已经注册，所得密码必须与hash后的密码相同，同时登录与注销页面能相互转换
+上传：上传的文件存储在static/library中，有登录限制，即要上传文件必须先登录
+下载：登录限制，然后获取书名，从library中下载
+发布：追加功能，用户可发表一些问题，其它人可以评论回答
+详情：可以查看所选指令的详情，并在该页面进行评论
+删除：用户可以删除自己上传过的书籍，先删除书籍评论的内容最后删除书籍
+
+
+
+$ pip install pipenv
+$ pipenv install --dev --pypi-mirror https://mirrors.aliyun.com/pypi/simple
+$ pipenv shell
+
+python manage.py db init
+python manage.py db migrate
+python manage.py db upgrade
+
+$ cd Library
+$ flask fun
+
+
+在使用前必须先创建数据库
+
+限制文件上传的格式，格式错误闪现消息提示

@@ -1,0 +1,48 @@
+.upload_info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.page-title {
+    text-align: center;
+}
+
+.upload-content {
+    margin-left: 20px;
+}
+
+.back {
+    width: 500px;
+    margin-left: 20px;
+}
+
+.avatar {
+    width: 40px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.comment-list {
+    padding-left: 20px;
+}
+
+.comment-list li {
+    padding-top: 10px;
+    list-style: none;
+    border-bottom: 1px solid #eee;
+}
+
+.create-time {
+    float: right;
+    padding: 15px;
+}
+
+.username {
+    padding-left: 15px;
+}
+
+
+.answer-content {
+    padding-left: 60px;
+}
+

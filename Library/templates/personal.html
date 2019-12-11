@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}个人中心{% endblock %}
+
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/personal.css') }}">
+{% endblock %}
+
+
+
+{% block main %}
+    <div class="personal">
+        <p class="name">用户名：{{ user.uploader.username }}</p>
+        <p class="count">贡献的书籍量：{{ count }}</p>
+    </div>
+    <p>共享的书籍：</p>
+    <ul class="upload-list-group">
+        {% for context in personal %}
+            <li class="lis">
+                <div class="avatar-group">
+                    <img src="{{ url_for('static',filename='images/my_book.png') }}" alt="" class="avatar">
+                </div>
+                <div class="upload_group">
+                    <p class="book-title">
+                        {{ context.file_name }}
+                        <a style="float: right;color: white" class="btn btn-primary"
+                           href="{{ url_for('delete',book_id=context.id) }}">删除</a>
+                    </p>
+                    <p class="book-content">介绍：{{ context.Introduct }}</p>
+                    <div class="upload_info">
+                        <span class="uploader">{{ context.uploader.username }}</span>
+                        <span class="upload_time">{{ context.upload_time }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+
+{% endblock %}
+
+{% block main %}
+    <ul class="upload-list-group">
+        {% for context in contexts %}
+            <li class="lis">
+                <div class="avatar-group">
+                    <img src="{{ url_for('static',filename='images/Book.png') }}" alt="" class="avatar">
+                </div>
+                <div class="upload_group">
+                    <p class="book-title">
+                        <a href="{{ url_for('detail',book_id=context.id) }}">{{ context.file_name }}</a>
+                    </p>
+                    <p class="book-content">介绍：{{ context.Introduct }}</p>
+                    <div class="upload_info">
+                        <span class="uploader">{{ context.uploader.username }}</span>
+                        <span class="upload_time">{{ context.upload_time }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

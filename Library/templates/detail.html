@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}详情{% endblock %}
+
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/detail.css') }}">
+{% endblock %}
+
+
+{% block main %}
+    <h3 class="page-title">{{ up.file_name }}</h3>
+    <p class="upload_info">
+        <span>上传者：{{ up.uploader.username }}</span>
+        <span style="padding-left: 15px">时间：{{ up.upload_time }}</span>
+        <a style="float: right;" class="btn btn-primary"
+           href="{{ url_for('download',filename=up.file_name) }}">下载</a>
+        <a style="float: right; margin-right: 15px" class="btn btn-primary"
+           href="{{ url_for('online',filename=up.file_name) }}">查看</a>
+    </p>
+    <hr>
+    <p class="upload-content">详情：{{ up.Introduct }}</p>
+    <hr>
+    <h4 style="margin-left: 20px">评论：({{ count }})</h4>
+    <form action="{{ url_for('add_comment') }}" method="post">
+        <div class="back">
+            <div class="form-group">
+                <input name="comment-content" type="text" class="form-control" placeholder="请填写评论">
+                <input type="hidden" name="comment_id" value="{{ up.id }}">
+            </div>
+            <div class="form-group" style="text-align: right">
+                <button class="btn btn-primary">评论</button>
+            </div>
+        </div>
+    </form>
+
+    <ul class="comment-list">
+        {% for foo in up.file_list %}
+            <li>
+                <div class="user-info">
+                    <img src="{{ url_for('static',filename='images/user.png') }}"
+                         alt="" class="avatar">
+                    <span class="username">{{ foo.author.username }}</span>
+                    <span class="create-time">{{ foo.comment_time }}</span>
+                </div>
+                <p class="answer-content">{{ foo.content }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
