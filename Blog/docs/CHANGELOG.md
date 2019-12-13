@@ -1,3 +1,13 @@
+## [0.1.4] - 2019-12-11
+新增gunicorn.py部署文件,将`/blog/models/manage.py`移动到根目录
+### Added
+* `gunicorn.py`
+
+### Changed
+* `blog`
+* `docker-compose.yml`
+
+
 ## [0.1.3] - 2019-12-11
 ### Changed
 `import`规范，`router`测试
