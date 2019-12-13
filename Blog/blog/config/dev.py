@@ -8,5 +8,5 @@ class DevConfig(object):
     DEBUG = True
     SECRET_KEY = os.urandom(24)
 
-    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://postgres:111111@localhost:5432/blog"
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://postgres:111111@172.16.1.61:5432/blog"
     SQLALCHEMY_TRACK_MODIFICATIONS = True

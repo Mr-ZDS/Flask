@@ -5,18 +5,32 @@
 
 --------------------------------------------------------------
 
-### 部署
-更新依赖   
+
+### 部署运行
+1、安装virtualenv
 ```
-pip install -r requirements.txt
+pip install virtualenv
+```
+2、创建虚拟环境
+```
+python -m venv venv
+```
+3、激活虚拟环境
+```
+venv\scripts\activate
+```
+4、更新依赖   
+```
+pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 ```
 
-启动项目
+5、启动项目
 ```
-python -m flask run
+flask run
 ```
 
-使用`docker-compose`部署
+
+### 使用`docker-compose`部署
 ```
 docker-compose up -d --build
 ```

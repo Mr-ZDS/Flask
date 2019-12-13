@@ -3,8 +3,9 @@ import importlib
 
 from flask import Flask, render_template
 
-from blog.views.index import login_manager
+from flask_login import LoginManager
 from blog.extensions import db, migrate
+from blog.models.user import User
 from blog.urls import routers
 
 
@@ -26,8 +27,22 @@ def create_app(config_name):
     configure_errorhandlers(app)
     configure_extensions(app)
     configure_blueprint(app)
-    login_manager.init_app(app)
+    configure_loginmanager(app)
     return app
+
+
+def configure_loginmanager(app):
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = "index.login"
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        user = User.query.filter(User.id == user_id).first()
+        if user:
+            return user
+        else:
+            return None
 
 
 def configure_blueprint(app):

@@ -1,7 +1,14 @@
 FROM python:3.7
 
-ADD ./Blog /app
-WORKDIR /app
-RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN mkdir -p /var/www/blog
+WORKDIR /var/www/blog
+
+COPY . /var/www/blog/
+RUN pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+
+RUN python manage.py db init
+RUN python manage.py db migrate
+RUN python manage.py db upgrade
+
 CMD ["python", "app.py"]
 EXPOSE 5000

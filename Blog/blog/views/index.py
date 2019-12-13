@@ -13,23 +13,14 @@ from blog.models.bbs import Answer, Question
 from blog.models.user import User, Blog
 
 index_router = Blueprint("index", __name__)
-login_manager = LoginManager()
-login_manager.login_view = "index.login"
 
-
-@login_manager.user_loader
-def load_user(user_id):
-    user = User.query.filter(User.id == user_id).first()
-    if user:
-        return user
-    else:
-        return None
 
 
 @index_router.route('/')
 def index():
     context = {'questions': Question.query.order_by(desc('ques_time')).all(),
                'blog': Blog.query.order_by(desc('create_time')).all()}
+    print(context)
     return render_template('index.html', **context)
 
 
